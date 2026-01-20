@@ -251,7 +251,19 @@ function sendHTMLPreviewToPHP(){
     </html>
     `;
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'index.php', true);
+    xhr.open('POST', 'http://localhost:8000/index.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send('preview_html=' + encodeURIComponent(previewHTML));
+    xhr.responseType = 'blob';
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const blob = new Blob([xhr.response], { type: 'application/pdf' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = 'cv_generated.pdf';
+            link.click();
+        } else {
+            console.error('Erreur lors de la génération du PDF');
+        }
+    };
+    xhr.send('html_content=' + encodeURIComponent(previewHTML));
 }
