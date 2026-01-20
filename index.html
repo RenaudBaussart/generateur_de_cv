@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,7 @@
     <script src="index.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <section class="input_container container-fluid mt-5 ">
         <form action="" method="post" class="row cv_form" id="cv_form">
@@ -42,7 +43,8 @@
             </fieldset>
 
             <fieldset id="experience_fieldset" class="mb-4">
-                <legend>Expériences professionnelles <button class="btn btn-primary mb-4" id="add_experience">+</button></legend>
+                <legend>Expériences professionnelles <button class="btn btn-primary mb-4" id="add_experience">+</button>
+                </legend>
             </fieldset>
             <fieldset id="formation_fieldset" class="mb-4">
                 <legend>Formations <button class="btn btn-primary mb-4" id="add_formation">+</button></legend>
@@ -55,25 +57,58 @@
     </section>
     <section class="pre_visualisation_container">
         <h2>Prévisualisation du CV</h2>
-        <div id="cv_preview" class="border p-4 cv_preview">
-            <h4 id="preview_job_title">titre professionnel</h4>
-            <p id="preview_surname">Nom</p>
-            <p id="preview_name">Prénom</p>
-            <p id="preview_email">Adresse email</p>
-            <p id="preview_phone">Numéro de téléphone</p>
-            <p id="preview_description">Description professionnelle</p>
-            <section id="preview_experiences">
-                <h5>Expériences professionnelles</h5>
-            </section>
-            <section id="preview_formations">
-                <h5>Formations</h5>
-            </section>
-            <section id="preview_skills">
-                <h5>Compétences</h5>
-            </section>
-        </div>
+        <table id="cv_preview" style="width: 100%; border-collapse: collapse; font-family: sans-serif;">
+            <tr>
+                <td style="padding: 20px; border: 1px solid #ccc;">
+                    <h4 id="preview_job_title" style="margin-top: 0; color: #333;">titre professionnel</h4>
+
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 50%; vertical-align: top;">
+                                <p id="preview_surname"><strong>Nom :</strong> <span id="val_surname">Nom</span></p>
+                                <p id="preview_name"><strong>Prénom :</strong> <span id="val_name">Prénom</span></p>
+                            </td>
+                            <td style="width: 50%; vertical-align: top;">
+                                <p id="preview_email">Email : Adresse email</p>
+                                <p id="preview_phone">Tel : Numéro de téléphone</p>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <p id="preview_description" style="margin-top: 15px; font-style: italic;">
+                        Description professionnelle
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding: 10px 20px;">
+                    <section id="preview_experiences">
+                        <h5 style="border-bottom: 1px solid #000; padding-bottom: 5px;">Expériences professionnelles
+                        </h5>
+                    </section>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding: 10px 20px;">
+                    <section id="preview_formations">
+                        <h5 style="border-bottom: 1px solid #000; padding-bottom: 5px;">Formations</h5>
+                    </section>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding: 10px 20px;">
+                    <section id="preview_skills">
+                        <h5 style="border-bottom: 1px solid #000; padding-bottom: 5px;">Compétences</h5>
+                    </section>
+                </td>
+            </tr>
+        </table>
     </section>
 
 
 </body>
+
 </html>

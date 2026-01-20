@@ -105,96 +105,104 @@ addEventListener('DOMContentLoaded', () => {
         updatePreview()
     });
     //#endregion
-    //#region prewiew generation function
-    const formselected = document.getElementById('cv_form');
-    formselected.addEventListener('input', () => {
-        //#region General Information
-        const previewContainer = document.getElementById('cv_preview');
-        const formData = new FormData(formselected);
-        let jobTitle = document.getElementById('preview_job_title');
-        jobTitle.textContent = formData.get('pro_title') || 'Intitulé du poste';
-        let surname = document.getElementById('preview_surname');
-        surname.textContent = formData.get('surname') || 'Nom';
-        let firstname = document.getElementById('preview_name');
-        firstname.textContent = formData.get('name') || 'Prénom';
-        let email = document.getElementById('preview_email');
-        email.textContent = formData.get('mail_adress') || 'Adresse email';
-        let phone = document.getElementById('preview_phone');
-        phone.textContent = formData.get('phone_nbr') || 'Numéro de téléphone';
-        let description = document.getElementById('preview_description');
-        description.textContent = formData.get('pro_descripton') || 'Description professionnelle';
-        //#endregion
-        //#region Experiences
-        const previewExperiences = document.getElementById("preview_experiences");
-        previewExperiences.innerHTML = "<h5>Expériences Professionnelles</h5>";
-        const experienceEntries = formselected.querySelectorAll('.experience-entry');
-        experienceEntries.forEach((entry) => {
-            // On extrait le numéro de l'ID (ex: "experience_entry_1" -> "1")
-            const id = entry.id.replace('experience_entry_', '');
+ //#region preview generation function
+const formselected = document.getElementById('cv_form');
+formselected.addEventListener('input', () => {
+    //#region General Information
+    const formData = new FormData(formselected);
+    
+    // Mise à jour des champs simples
+    document.getElementById('preview_job_title').textContent = formData.get('pro_title') || 'Intitulé du poste';
+    document.getElementById('preview_surname').textContent = formData.get('surname') || 'Nom';
+    document.getElementById('preview_name').textContent = formData.get('name') || 'Prénom';
+    document.getElementById('preview_email').textContent = formData.get('mail_adress') || 'Adresse email';
+    document.getElementById('preview_phone').textContent = formData.get('phone_nbr') || 'Numéro de téléphone';
+    document.getElementById('preview_description').textContent = formData.get('pro_descripton') || 'Description professionnelle';
+    //#endregion
 
-            // Récupération des données via FormData avec l'ID correct
-            const expJobTitle = formData.get(`job_title[${id}]`) || 'Intitulé du poste';
-            const expCompany = formData.get(`company[${id}]`) || 'Entreprise';
-            const expStartDate = formData.get(`start_date[${id}]`) || '';
-            const expEndDate = formData.get(`end_date[${id}]`) || 'Présent';
-            const expDescription = formData.get(`job_description[${id}]`) || '';
+    //#region Experiences
+    const previewExperiences = document.getElementById("preview_experiences");
+    // On garde le titre en dehors pour la structure globale
+    previewExperiences.innerHTML = "<h5 style='border-bottom: 1px solid #333; padding-bottom: 5px;'>Expériences Professionnelles</h5>";
+    
+    const experienceEntries = formselected.querySelectorAll('.experience-entry');
+    experienceEntries.forEach((entry) => {
+        const id = entry.id.replace('experience_entry_', '');
 
-            // 3. Construction du HTML pour cette expérience précise
-            const expHTMLexperience = `
-            <div class="experience-preview mb-3">
-                <h6 class="fw-bold text-uppercase">${expJobTitle}</h6>
-                <div class="text-primary">${expCompany}</div>
-                <small class="text-muted">${expStartDate} - ${expEndDate}</small>
-                <p style="white-space: pre-wrap;">${expDescription}</p>
-            </div>
-            `;
+        const expJobTitle = formData.get(`job_title[${id}]`) || 'Intitulé du poste';
+        const expCompany = formData.get(`company[${id}]`) || 'Entreprise';
+        const expStartDate = formData.get(`start_date[${id}]`) || '';
+        const expEndDate = formData.get(`end_date[${id}]`) || 'Présent';
+        const expDescription = formData.get(`job_description[${id}]`) || '';
 
-            // 4. Ajout au conteneur (qui a été vidé au début)
-            previewExperiences.insertAdjacentHTML('beforeend', expHTMLexperience);
-            
-        });
-        //#endregion
-        //#region Formations preview
-        const previewFormations = document.getElementById("preview_formations");
-        previewFormations.innerHTML = "<h5>Formations</h5>";
-        const formationEntries = formselected.querySelectorAll('.formation-entry');
-        formationEntries.forEach((entry) => {
-            const id = entry.id.replace('formation_entry_', '');
-            const formFormationTitle = formData.get(`formation_title[${id}]`) || 'Intitulé de la formation';
-            const formSchool = formData.get(`school[${id}]`) || 'Établissement';
-            const formStartDate = formData.get(`start_date[${id}]`) || '';
-            const formEndDate = formData.get(`end_date[${id}]`) || 'Présent';
-            const formDescription = formData.get(`description[${id}]`) || '';
-            const expHTMLformation = `
-                <div class="formation-preview mb-3">
-                    <h6 class="fw-bold text-uppercase">${formFormationTitle}</h6>
-                    <div class="text-primary">${formSchool}</div>
-                    <small class="text-muted">${formStartDate} - ${formEndDate}</small>
-                    <p style="white-space: pre-wrap;">${formDescription}</p>
-                </div>
-                `;
-            previewFormations.insertAdjacentHTML('beforeend', expHTMLformation);
-
-        });
-        //#endregion
-        //#region Skills preview
-        const previewSkills = document.getElementById("preview_skills");
-        previewSkills.innerHTML = "<h5>Compétences</h5>";
-        const skillEntries = formselected.querySelectorAll('.skill-entry');
-        skillEntries.forEach((entry) => {
-            const id = entry.id.replace('skill_entry_', '');
-            const skillName = formData.get(`skill_name[${id}]`) || 'Compétence';
-            const skillLevel = formData.get(`skill_level[${id}]`) || 'Moyen';
-            const skillHTML = `
-                <div class="skill-preview mb-2">
-                    <strong>${skillName}</strong> - <span>Niveau:${skillLevel}</span>
-                </div>
-                `;
-            previewSkills.insertAdjacentHTML('beforeend', skillHTML);
-        });
-        //#endregion
+        // Méthode 1 : Remplacement par une table
+        const expHTMLexperience = `
+        <table style="width: 100%; margin-bottom: 15px; table-layout: fixed; border-collapse: collapse;">
+            <tr>
+                <td style="vertical-align: top;">
+                    <div style="font-weight: bold; text-transform: uppercase; font-size: 11pt;">${expJobTitle}</div>
+                    <div style="color: #007bff; font-weight: bold;">${expCompany}</div>
+                    <div style="color: #666; font-size: 9pt; margin-bottom: 5px;">${expStartDate} - ${expEndDate}</div>
+                    <div style="white-space: pre-wrap; font-size: 10pt;">${expDescription}</div>
+                </td>
+            </tr>
+        </table>
+        `;
+        previewExperiences.insertAdjacentHTML('beforeend', expHTMLexperience);
     });
     //#endregion
+
+    //#region Formations
+    const previewFormations = document.getElementById("preview_formations");
+    previewFormations.innerHTML = "<h5 style='border-bottom: 1px solid #333; padding-bottom: 5px;'>Formations</h5>";
+    
+    const formationEntries = formselected.querySelectorAll('.formation-entry');
+    formationEntries.forEach((entry) => {
+        const id = entry.id.replace('formation_entry_', '');
+        const formFormationTitle = formData.get(`formation_title[${id}]`) || 'Intitulé de la formation';
+        const formSchool = formData.get(`school[${id}]`) || 'Établissement';
+        const formStartDate = formData.get(`start_date[${id}]`) || '';
+        const formEndDate = formData.get(`end_date[${id}]`) || 'Présent';
+        const formDescription = formData.get(`description[${id}]`) || '';
+
+        const expHTMLformation = `
+        <table style="width: 100%; margin-bottom: 15px; table-layout: fixed; border-collapse: collapse;">
+            <tr>
+                <td style="vertical-align: top;">
+                    <div style="font-weight: bold; text-transform: uppercase; font-size: 11pt;">${formFormationTitle}</div>
+                    <div style="color: #007bff; font-weight: bold;">${formSchool}</div>
+                    <div style="color: #666; font-size: 9pt; margin-bottom: 5px;">${formStartDate} - ${formEndDate}</div>
+                    <div style="white-space: pre-wrap; font-size: 10pt;">${formDescription}</div>
+                </td>
+            </tr>
+        </table>
+        `;
+        previewFormations.insertAdjacentHTML('beforeend', expHTMLformation);
+    });
+    //#endregion
+
+    //#region Skills
+    const previewSkills = document.getElementById("preview_skills");
+    previewSkills.innerHTML = "<h5 style='border-bottom: 1px solid #333; padding-bottom: 5px;'>Compétences</h5>";
+    
+    const skillEntries = formselected.querySelectorAll('.skill-entry');
+    skillEntries.forEach((entry) => {
+        const id = entry.id.replace('skill_entry_', '');
+        const skillName = formData.get(`skill_name[${id}]`) || 'Compétence';
+        const skillLevel = formData.get(`skill_level[${id}]`) || 'Moyen';
+
+        const skillHTML = `
+        <table style="width: 100%; margin-bottom: 5px; border-collapse: collapse;">
+            <tr>
+                <td style="width: 70%; font-size: 10pt;"><strong>${skillName}</strong></td>
+                <td style="width: 30%; font-size: 10pt; text-align: right; color: #666;">Niveau: ${skillLevel}</td>
+            </tr>
+        </table>
+        `;
+        previewSkills.insertAdjacentHTML('beforeend', skillHTML);
+    });
+    //#endregion
+});
     //#region send preview to php on submit
     formselected.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -244,9 +252,9 @@ function sendHTMLPreviewToPHP(){
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="">
+         <table id="cv_preview" style="width: 100%; border-collapse: collapse; font-family: sans-serif;">
         ${previewHTML}
-        </div>
+        </table>
     </body>
     </html>
     `;
@@ -265,5 +273,5 @@ function sendHTMLPreviewToPHP(){
             console.error('Erreur lors de la génération du PDF');
         }
     };
-    xhr.send('html_content=' + encodeURIComponent(previewHTML));
+    xhr.send('html_content=' + encodeURIComponent(exportHTML));
 }
