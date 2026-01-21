@@ -11,51 +11,70 @@
 </head>
 
 <body>
-    <section class="input_container container-fluid mt-5 ">
-        <form action="" method="post" class="row cv_form" id="cv_form">
+    <section class="input_container container-fluid mt-5 p-4 bg-light rounded shadow-sm">
+    <form action="" method="post" class="row cv_form g-3" id="cv_form">
 
-            <fieldset class="mb-4">
-                <legend>Informations générales</legend>
-                <section>
-                    <label for="surname" class="form-label">Nom</label>
-                    <input type="text" name="surname" id="surname" class="form-control">
-                </section>
-                <section>
-                    <label for="name" class="form-label">Prénom</label>
-                    <input type="text" name="name" id="name" class="form-control">
-                </section>
-                <section>
-                    <label for="pro_title" class="form-label">Titre professionnel</label>
-                    <input type="text" name="pro_title" id="pro_title" class="form-control">
-                </section>
-                <section>
-                    <label for="mail_adress" class="form-label">Adresse email</label>
-                    <input type="email" name="mail_adress" id="mail_adress" class="form-control">
-                </section>
-                <section>
-                    <label for="phone_nbr" class="form-label">Numéro de téléphone</label>
-                    <input type="tel" name="phone_nbr" id="phone_nbr" class="form-control">
-                </section>
-                <section>
-                    <label for="pro_descripton" class="form-label">Description</label>
-                    <textarea type="text" name="pro_descripton" id="pro_descripton" class="form-control"></textarea>
-                </section>
-            </fieldset>
+        <fieldset class="mb-4 border p-3 rounded bg-white">
+            <legend class="float-none w-auto px-2 fw-bold text-primary">Informations générales</legend>
+            
+            <section class="mb-3">
+                <label for="surname" class="form-label">Nom</label>
+                <input type="text" name="surname" id="surname" class="form-control required">
+            </section>
+            
+            <section class="mb-3">
+                <label for="name" class="form-label">Prénom</label>
+                <input type="text" name="name" id="name" class="form-control" required>
+            </section>
+            
+            <section class="mb-3">
+                <label for="pro_title" class="form-label">Titre professionnel</label>
+                <input type="text" name="pro_title" id="pro_title" class="form-control" required>
+            </section>
+            
+            <section class="mb-3">
+                <label for="mail_adress" class="form-label">Adresse email</label>
+                <input type="email" name="mail_adress" id="mail_adress" class="form-control" required>
+            </section>
+            
+            <section class="mb-3">
+                <label for="phone_nbr" class="form-label">Numéro de téléphone</label>
+                <input type="tel" name="phone_nbr" id="phone_nbr" class="form-control" required>
+            </section>
+            
+            <section class="mb-3">
+                <label for="pro_descripton" class="form-label">Description</label>
+                <textarea name="pro_descripton" id="pro_descripton" class="form-control" rows="3"></textarea>
+            </section>
+        </fieldset>
 
-            <fieldset id="experience_fieldset" class="mb-4">
-                <legend>Expériences professionnelles <button class="btn btn-primary mb-4" id="add_experience">+</button>
-                </legend>
-            </fieldset>
-            <fieldset id="formation_fieldset" class="mb-4">
-                <legend>Formations <button class="btn btn-primary mb-4" id="add_formation">+</button></legend>
-            </fieldset>
-            <fieldset id="skill_fieldset" class="mb-4">
-                <legend>Compétences <button class="btn btn-primary mb-4" id="add_skill">+</button></legend>
-            </fieldset>
-            <input type="submit" value="Générer le CV" class="btn btn-primary mb-4" id="submitBtn">
-        </form>
-    </section>
-    <section class="pre_visualisation_container">
+        <fieldset id="experience_fieldset" class="mb-4 border p-3 rounded bg-white">
+            <legend class="float-none w-auto px-2 fw-bold text-primary d-flex align-items-center justify-content-between">
+                Expériences professionnelles 
+                <button type="button" class="btn btn-primary btn-sm ms-3" id="add_experience">+</button>
+            </legend>
+        </fieldset>
+
+        <fieldset id="formation_fieldset" class="mb-4 border p-3 rounded bg-white">
+            <legend class="float-none w-auto px-2 fw-bold text-primary d-flex align-items-center justify-content-between">
+                Formations 
+                <button type="button" class="btn btn-primary btn-sm ms-3" id="add_formation">+</button>
+            </legend>
+        </fieldset>
+
+        <fieldset id="skill_fieldset" class="mb-4 border p-3 rounded bg-white">
+            <legend class="float-none w-auto px-2 fw-bold text-primary d-flex align-items-center justify-content-between">
+                Compétences 
+                <button type="button" class="btn btn-primary btn-sm ms-3 w-25" id="add_skill">+</button>
+            </legend>
+        </fieldset>
+
+        <div class="col-12">
+            <input type="submit" value="Générer le CV" class="btn btn-success w-100 py-2 fw-bold" id="submitBtn">
+        </div>
+    </form>
+</section>
+    <section class="pre_visualisation_container m-3">
         <h2>Prévisualisation du CV</h2>
         <table id="cv_preview" style="width: 100%; border-collapse: collapse; font-family: sans-serif;">
             <tr>
