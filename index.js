@@ -110,8 +110,6 @@ const formselected = document.getElementById('cv_form');
 formselected.addEventListener('input', () => {
     //#region General Information
     const formData = new FormData(formselected);
-    
-    // Mise à jour des champs simples
     document.getElementById('preview_job_title').textContent = formData.get('pro_title') || 'Intitulé du poste';
     document.getElementById('preview_surname').textContent = formData.get('surname') || 'Nom';
     document.getElementById('preview_name').textContent = formData.get('name') || 'Prénom';
@@ -119,10 +117,8 @@ formselected.addEventListener('input', () => {
     document.getElementById('preview_phone').textContent = formData.get('phone_nbr') || 'Numéro de téléphone';
     document.getElementById('preview_description').textContent = formData.get('pro_descripton') || 'Description professionnelle';
     //#endregion
-
     //#region Experiences
     const previewExperiences = document.getElementById("preview_experiences");
-    // On garde le titre en dehors pour la structure globale
     previewExperiences.innerHTML = "<h5 style='border-bottom: 1px solid #333; padding-bottom: 5px;'>Expériences Professionnelles</h5>";
     
     const experienceEntries = formselected.querySelectorAll('.experience-entry');
@@ -135,7 +131,6 @@ formselected.addEventListener('input', () => {
         const expEndDate = formData.get(`end_date[${id}]`) || 'Présent';
         const expDescription = formData.get(`job_description[${id}]`) || '';
 
-        // Méthode 1 : Remplacement par une table
         const expHTMLexperience = `
         <table style="width: 100%; margin-bottom: 15px; table-layout: fixed; border-collapse: collapse;">
             <tr>
@@ -151,11 +146,9 @@ formselected.addEventListener('input', () => {
         previewExperiences.insertAdjacentHTML('beforeend', expHTMLexperience);
     });
     //#endregion
-
     //#region Formations
     const previewFormations = document.getElementById("preview_formations");
     previewFormations.innerHTML = "<h5 style='border-bottom: 1px solid #333; padding-bottom: 5px;'>Formations</h5>";
-    
     const formationEntries = formselected.querySelectorAll('.formation-entry');
     formationEntries.forEach((entry) => {
         const id = entry.id.replace('formation_entry_', '');
@@ -180,7 +173,6 @@ formselected.addEventListener('input', () => {
         previewFormations.insertAdjacentHTML('beforeend', expHTMLformation);
     });
     //#endregion
-
     //#region Skills
     const previewSkills = document.getElementById("preview_skills");
     previewSkills.innerHTML = "<h5 style='border-bottom: 1px solid #333; padding-bottom: 5px;'>Compétences</h5>";
