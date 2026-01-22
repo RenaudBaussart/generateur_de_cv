@@ -96,6 +96,11 @@ addEventListener('DOMContentLoaded', () => {
             <div class="col-md-6 mb-3">
                 <label class="form-label">Niveau</label>
                 <input list="levels" class="form-control" name="skill_level[${skillCount}]" id="skill_level_${skillCount}" placeholder="Choisir..." required>
+                <datalist id="levels">
+                  <option value="Débutant">
+                  <option value="Intermédiaire">
+                  <option value="Avancé">
+                </datalist>
             </div>
         </div>
         `;
