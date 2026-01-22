@@ -1,7 +1,7 @@
 addEventListener('DOMContentLoaded', () => {
     const addExperienceButton = document.getElementById('add_experience');
     const addFormationButton = document.getElementById('add_formation');
-    const addskillButton = document.getElementById('add_skill');
+    const addSkillButton = document.getElementById('add_skill');
     let experienceCount = 1;
     let formationCount = 1;
     let skillCount = 1;
@@ -10,29 +10,66 @@ addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         let newExperience = document.createElement('div');
         newExperience.id = `experience_entry_${experienceCount}`;
-        newExperience.classList.add('experience-entry');
+        newExperience.classList.add('experience-entry','needs-validation','was-validated');
         newExperience.innerHTML = `
         <h4>Expérience Professionnelle</h4>
         <button id="delete_exp_${experienceCount}" class="btn btn-danger mb-4" onclick="deleteExperience(${experienceCount})">X</button>
-        <div class="mb-3">
+        <div class="mb-3 position-relative mb-5">
             <label class="form_label job_title">Intitulé du poste</label>
             <input type="text" class="form_control" name="job_title[${experienceCount}]" id="job_title_${experienceCount}" required>
+            <div class="valid-tooltip">
+                  Génial, ça semble correct !
+                </div>
+                <div class="invalid-tooltip">
+                  Oups, ce champ est obligatoire.
+                </div>
         </div>
-        <div class="mb-3">
+
+        <div class="mb-3 position-relative mb-5">
             <label class="form_label company_name">Entreprise</label>
             <input type="text" class="form_control" name="company[${experienceCount}]" id="company_${experienceCount}" required>
+            <div class="valid-tooltip">
+                  Génial, ça semble correct !
+            </div>
+            <div class="invalid-tooltip">
+                  Oups, ce champ est obligatoire.
+            </div>
         </div>
-        <div class="mb-3">
+
+        <div class="mb-3 position-relative mb-5">
             <label class="form_label date_start">Date d'entrée</label>
             <input type="date" class="form_control" name="start_date[${experienceCount}]" id="start_date_${experienceCount}" required>
+            <div class="valid-tooltip">
+                  Génial, ça semble correct !
+                </div>
+                <div class="invalid-tooltip">
+                  Oups, ce champ est obligatoire.
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
+
+        <div class="mb-3 position-relative mb-5">
             <label class="form_label date_end">Date de sortie</label>
             <input type="date" class="form_control" name="end_date[${experienceCount}]" id="end_date_${experienceCount}">
+            <div class="valid-tooltip">
+                  Génial, ça semble correct !
+                </div>
+                <div class="invalid-tooltip">
+                  Oups, ce champ est obligatoire.
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
+
+        <div class="mb-3 position-relative mb-5">
             <label class="form_label job_description">Description</label>
             <textarea class="form_control" name="job_description[${experienceCount}]" id="job_description_${experienceCount}" required></textarea>
+            <div class="valid-tooltip">
+                  Génial, ça semble correct !
+                </div>
+                <div class="invalid-tooltip">
+                  Oups, ce champ est obligatoire.
+                </div>
+            </div>
         </div>
         `
         const experienceFieldset = document.getElementById('experience_fieldset');
@@ -46,29 +83,68 @@ addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         let newFormation = document.createElement('div');
         newFormation.id = `formation_entry_${formationCount}`;
-        newFormation.classList.add('formation-entry');
+        newFormation.classList.add('experience-entry','needs-validation','was-validated');
         newFormation.innerHTML = `
         <h4>Formation</h4>
         <button id="delete_formation_${formationCount}" class="btn btn-danger mb-4" onclick="deleteFormation(${formationCount})">X</button>
-        <div class="mb-3">
+        <div class="mb-3 position-relative mb-5">
             <label class="form_label formation_title">Intitulé de la formation</label>
             <input type="text" class="form_control" name="formation_title[${formationCount}]" id="formation_title_${formationCount}" required>
+            <div class="valid-tooltip">
+                  Génial, ça semble correct !
+                </div>
+                <div class="invalid-tooltip">
+                  Oups, ce champ est obligatoire.
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
+
+        <div class="mb-3 position-relative mb-5">
             <label class="form_label school_name">Établissement</label>
             <input type="text" class="form_control" name="school[${formationCount}]" id="school_${formationCount}" required>
+            <div class="valid-tooltip">
+                  Génial, ça semble correct !
+                </div>
+                <div class="invalid-tooltip">
+                  Oups, ce champ est obligatoire.
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
+
+        <div class="mb-3 position-relative mb-5">
             <label class="form_label date_start">Date d'entrée</label>
             <input type="date" class="form_control" name="start_date[${formationCount}]" id="start_date_${formationCount}" required>
+            <div class="valid-tooltip">
+                  Génial, ça semble correct !
+                </div>
+                <div class="invalid-tooltip">
+                  Oups, ce champ est obligatoire.
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
+
+        <div class="mb-3 position-relative mb-5">
             <label class="form_label date_end">Date de sortie</label>
             <input type="date" class="form_control" name="end_date[${formationCount}]" id="end_date_${formationCount}">
+            <div class="valid-tooltip">
+                  Génial, ça semble correct !
+                </div>
+                <div class="invalid-tooltip">
+                  Oups, ce champ est obligatoire.
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
+
+        <div class="mb-3 position-relative mb-5">
             <label class="form_label formation_description">Description</label>
             <textarea class="form_control" name="description[${formationCount}]" id="description_${formationCount}" required></textarea>
+            <div class="valid-tooltip">
+                  Génial, ça semble correct !
+                </div>
+                <div class="invalid-tooltip">
+                  Oups, ce champ est obligatoire.
+                </div>
+            </div>
         </div>
         `
         const formationFieldset = document.getElementById('formation_fieldset');
@@ -78,10 +154,10 @@ addEventListener('DOMContentLoaded', () => {
     });
     //#endregion
     //#region skills dynamic fields
-    addskillButton.addEventListener('click', (e) => {
+    addSkillButton.addEventListener('click', (e) => {
         e.preventDefault();
         let newSkill = document.createElement('div');
-        newSkill.classList.add('skill-entry');
+        newSkill.classList.add('experience-entry','needs-validation','was-validated');
         newSkill.id = `skill_entry_${skillCount}`;
         newSkill.innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-2">
@@ -89,19 +165,33 @@ addEventListener('DOMContentLoaded', () => {
             <button type="button" class="btn btn-sm btn-danger" onclick="deleteSkill(${skillCount})">Supprimer</button>
         </div>
         <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 position-relative mb-5">
                 <label class="form-label">Intitulé</label>
                 <input type="text" class="form-control" name="skill_name[${skillCount}]" id="skill_name_${skillCount}" placeholder="ex: JavaScript" required>
+                <div class="valid-tooltip">
+                      Génial, ça semble correct !
+                </div>
+                <div class="invalid-tooltip">
+                      Oups, ce champ est obligatoire.
+                </div>
             </div>
-            <div class="col-md-6 mb-3">
+
+            <div class="col-md-6 position-relative mb-5">
                 <label class="form-label">Niveau</label>
                 <input list="levels" class="form-control" name="skill_level[${skillCount}]" id="skill_level_${skillCount}" placeholder="Choisir..." required>
-                <datalist id="levels">
-                  <option value="Débutant">
-                  <option value="Intermédiaire">
-                  <option value="Avancé">
-                </datalist>
+                <div class="valid-tooltip">
+                      Génial, ça semble correct !
+                </div>
+                <div class="invalid-tooltip">
+                      Oups, ce champ est obligatoire.
+                </div>
             </div>
+
+            <datalist id="levels">
+                <option value="Débutant">
+                <option value="Intermédiaire">
+                <option value="Avancé">
+            </datalist>
         </div>
         `;
         const skillFieldset = document.getElementById('skill_fieldset');
