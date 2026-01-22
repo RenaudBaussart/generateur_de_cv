@@ -20,15 +20,16 @@ Ce projet est un générateur de CV interactif. L'utilisateur remplit ses inform
 
 ## ✨ Fonctionnalités
 * **Saisie dynamique** : Formulaire pour les infos personnelles (Nom, Prénom, Email, etc.).
-* **Gestion des expériences** : Ajout/Suppression de sections pour les expériences professionnelles et les formations.
+* **Gestion des expériences** : Ajout/Suppression de sections pour les expériences professionnelles ,les formations et les skill.
 * **Aperçu en temps réel** : Visualisation immédiate du rendu final.
-* **Exportation** : Possibilité d'imprimer ou de sauvegarder le CV en PDF (via `window.print()`).
+* **Exportation** : Possibilité de télécharger le CV en PDF.
 * **Design Responsive** : Adapté aux écrans d'ordinateurs et aux tablettes.
 
 ## 🛠 Technologies utilisées
 * **HTML5** : Structure sémantique du formulaire et du CV.
-* **CSS3** : Mise en page (Flexbox/Grid) et stylisation (print media queries).
-* **JavaScript (Vanilla)** : Manipulation du DOM pour la génération dynamique du contenu.
+* **CSS** : Mise en page et stylisation.
+* **JavaScript** : Manipulation du DOM pour la génération dynamique du contenu.
+* **PHP** : Generation du PDF a partir de la preview HTML.
 
 ## ⚙️ Installation
 
